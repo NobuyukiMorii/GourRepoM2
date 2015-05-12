@@ -88,6 +88,7 @@ echo $this->Form->submit('お店を探す', array(
 
 <!-- JS -->
 <?php echo $this->Html->script('jquery-1.11.2.min');?>
+
 <script>
 $("#LargeCategory").change(function () {
       var str = "";
@@ -99,7 +100,7 @@ $("#LargeCategory").change(function () {
         value = $(this).context.value;
 
         $.ajax({
-            url: 'http://<?php echo $host ;?>/GourRepo/Api/getSmallCategory/' + value + '.json',
+            url: 'http://<?php echo $host ;?>/GourRepoM2/Api/getSmallCategory/' + value + '.json',
             success: function(json) {
             	var info = json.SmallCategories;
 

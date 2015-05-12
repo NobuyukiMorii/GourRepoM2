@@ -93,7 +93,7 @@
   </div>
 
   <div>
-    <form action="/GourRepo/Movies/add/<?php if(isset($videoId)) {echo $videoId ;} ?>" method="post" accept-charset="utf-8">
+    <form action="/GourRepoM2/Movies/add/<?php if(isset($videoId)) {echo $videoId ;} ?>" method="post" accept-charset="utf-8">
 
       <input name="title" type="hidden" id="name_form" value="" />
       <input name="restaurant_id" type="hidden" value=<?php if(isset($restaurant_id)){ echo $restaurant_id; } ?> />

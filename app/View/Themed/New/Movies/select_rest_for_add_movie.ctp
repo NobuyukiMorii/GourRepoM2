@@ -98,7 +98,7 @@ $("#LargeCategory").change(function () {
         value = $(this).context.value;
 
         $.ajax({
-            url: 'http://<?php echo $host ;?>/GourRepo/Api/getSmallCategory/' + value + '.json',
+            url: 'http://<?php echo $host ;?>/GourRepoM2/Api/getSmallCategory/' + value + '.json',
             success: function(json) {
             	var info = json.SmallCategories;
 

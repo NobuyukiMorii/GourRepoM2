@@ -1,4 +1,4 @@
-<form action="/GourRepo/Movies/selectMovieForAdd" method="post" accept-charset="utf-8">
+<form action="/GourRepoM2/Movies/selectMovieForAdd" method="post" accept-charset="utf-8">
 <?php
 echo $this->Form->input('name');
 ?>

@@ -452,7 +452,7 @@ class MoviesController extends AppController {
 
 		        }
 
-		        //条件おw設定する
+		        //条件を設定する
 	        	$conditions = array(
 					'OR' =>
 					array(	
