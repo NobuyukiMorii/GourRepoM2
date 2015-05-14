@@ -2778,3 +2778,23 @@ Request URL: /GourRepoM2/css/landing_page/overwrite.css
 Stack Trace:
 #0 /Applications/MAMP/htdocs/GourRepoM2/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2015-05-14 10:44:59 Error: [MissingControllerException] Controller class ThemeController could not be found.
+Exception Attributes: array (
+  'class' => 'ThemeController',
+  'plugin' => NULL,
+)
+Request URL: /GourRepoM2/theme/Pc/css/bootstrap.css.map
+Stack Trace:
+#0 /Applications/MAMP/htdocs/GourRepoM2/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-05-14 11:06:06 Error: [MissingActionException] Action MoviesController::Movies() could not be found.
+Exception Attributes: array (
+  'controller' => 'MoviesController',
+  'action' => 'Movies',
+)
+Request URL: /GourRepoM2/Movies/Movies/selectRestForAddMovie/?iPhone=true
+Stack Trace:
+#0 /Applications/MAMP/htdocs/GourRepoM2/lib/Cake/Routing/Dispatcher.php(193): Controller->invokeAction(Object(CakeRequest))
+#1 /Applications/MAMP/htdocs/GourRepoM2/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(MoviesController), Object(CakeRequest))
+#2 /Applications/MAMP/htdocs/GourRepoM2/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}

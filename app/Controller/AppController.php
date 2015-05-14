@@ -82,6 +82,11 @@ class AppController extends Controller {
         } else {
             $this->theme = 'Pc';
         }
+        $ua = $_SERVER['HTTP_USER_AGENT'];
+        if ((strpos($ua, 'iPhone') !== false) && (strpos($ua, 'Safari') === false)) {
+            $this->theme = 'iPhone';
+        }
+
 
         /*
         *controllerでログインユーザーを呼び出すメソッドを作成
