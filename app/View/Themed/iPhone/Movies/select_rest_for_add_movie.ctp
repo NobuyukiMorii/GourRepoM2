@@ -2,6 +2,7 @@
 
 
 <div class="Position">
+	
 	<h5>お食事レポートしたお店を選択してください。</h5>
 	<div style="margin-top:10px;"></div>
 
@@ -68,8 +69,8 @@
 		<table class="table table-bordered font-size">
 			<?php for ($i = 0; $i < count($restaurants); ++$i): ?>
 			<tr onclick="location.href='<?php echo $this->Html->url(array("controller" => "movies","action" => "add",$restaurants[$i]['Restaurant']['id']));?>'" class="cursor">
-				<td>
-					<img src="<?php echo $restaurants[$i]['Restaurant']['image_url'] ;?>"  class="img-thumbnail";>
+				<td width="10%">
+					<img src="<?php echo $restaurants[$i]['Restaurant']['image_url'] ;?>" width="100%">
 				</td>
 				<td><?php echo $restaurants[$i]['Restaurant']['name'] ;?></td>
 				<td><?php echo $restaurants[$i]['Restaurant']['address'] ;?></td>
