@@ -219,7 +219,11 @@ class MoviesController extends AppController {
 		/*
 		*レイアウトを変更
 		*/
-		$this->layout = 'default-for-form';
+        $ua = $_SERVER['HTTP_USER_AGENT'];
+        if ((strpos($ua, 'iPhone') !== false) && (strpos($ua, 'Safari') === false)) {
+        } else {
+        	$this->layout = 'default-for-form';
+        }
 
 		/*
 		*$this->request->dataがない時

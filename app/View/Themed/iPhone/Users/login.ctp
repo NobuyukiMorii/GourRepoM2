@@ -21,8 +21,12 @@
   <body>
 
   <!-- CONTENT ============-->
-	<div class="container margin-login">
 
+  	<span class="description">
+  		投稿の前にログインして下さい。
+  	</span>
+
+	<div class="margin-top">
 
 		<div class="row">
 
@@ -31,7 +35,7 @@
 					'inputDefaults' => array(
 						'div' => 'form-group',
 						'wrapInput' => false,
-						'class' => 'form-control input-lg'
+						'class' => 'form-control'
 					),
 					'class' => 'form-signin'
 				)); ?>
@@ -48,9 +52,9 @@
 					'placeholder' => 'パスワード',
 					'class' => 'form-control',
 				)); ?>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+				<button class="btn btn-primary btn-block" type="submit">ログイン</button>
 				<div class="aida"></div>
-				<a class="btn btn-lg btn-info btn-block" href="<?php echo $this->Html->url(array('controller' => 'Users' , 'action' => 'signup')); ?>">サインアップ</a>
+				<a class="btn btn-info btn-block" href="<?php echo $this->Html->url(array('controller' => 'Users' , 'action' => 'signup')); ?>">サインアップ</a>
 				<?php echo $this->Form->end(); ?>
 			</div>
 		</div>

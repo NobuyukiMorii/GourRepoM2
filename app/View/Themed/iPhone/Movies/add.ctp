@@ -4,7 +4,6 @@
 
 <div class="col-xs-9 col-xs-offset-1">
     <span id="signinButton" class="pre-sign-in">
-      Googleアカウントにログイン！
       <br>
       <span
           class="g-signin"
@@ -28,8 +27,6 @@
             <h4>動画の情報を入力して下さい</h4>
           </div>
 
-
-
           <label class="col-xs-12">タイトル</label>
           <div class="col-xs-12">
             <?php echo $this->Form->input('Movie.title', array(
@@ -43,7 +40,6 @@
             )); ?>
             <?php echo $this->Form->error('Movie.title');?>
           </div>
-
 
         <!-- textarea -->
 
