@@ -2,8 +2,9 @@
 <?php echo $this->Html->css('movies-add/movies-add');?>
 <?php echo $this->Html->css('bootstrap');?>
 
-<div class="col-xs-9 col-xs-offset-1">
+<div class="col-xs-12 center-button">
     <span id="signinButton" class="pre-sign-in">
+      Googleアカウントにログインしてください。
       <br>
       <span
           class="g-signin"
@@ -84,11 +85,6 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <div class="col-xs-12 margin-bottom">
-        <a class="btn btn-info btn-block" href="<?php echo $this->Html->url(array('controller' => 'Movies' , 'action' => 'addManual', $restaurant_id)); ?>">既にYoutubeに登録されている動画を登録する</a>
-      </div>
-    </div>
   </div>
 
   <div>

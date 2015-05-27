@@ -87,7 +87,6 @@ class AppController extends Controller {
             $this->theme = 'iPhone';
         }
 
-
         /*
         *controllerでログインユーザーを呼び出すメソッドを作成
         */
