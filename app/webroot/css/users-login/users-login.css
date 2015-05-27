@@ -1,0 +1,25 @@
+.form-signin {
+  width:80%;
+  margin: auto;
+}
+
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.margin-top {
+  margin-top: 10%;
+}
+
+.aida {
+  margin-top: 10%;
+}
+
+.description {
+  text-align: center; 
+}

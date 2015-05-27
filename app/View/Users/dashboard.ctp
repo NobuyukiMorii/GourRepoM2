@@ -1,292 +1,160 @@
-<?php echo $this->Html->css('bootstrap.min'); ?>
-<?php echo $this->Html->css('view-userWatchMovieList/common-setting'); ?>
-<?php echo $this->Html->css('view-userWatchMovieList/place-title.css'); ?>
-<?php echo $this->Html->css('view-userWatchMovieList/movie-list.css'); ?>
-<?php echo $this->Html->css('view-userWatchMovieList/select-page-button-movie.css'); ?>
-<?php echo $this->Html->css('view-userWatchMovieList/view-reccomend-movie-for-movie.css'); ?>
+<?php echo $this->Html->css('users-dashboard/users-dashboard'); ?>
 
-
-<fieldset>
-	<legend>ユーザープロフィール</legend>
-	<div class="row">
-		<div class="col-md-2">
-			プロフィール画像	
-		</div>
-		<div class="col-md-10">
-			<!-- ここの一文でサムネイルを表示している。第一引数でデータの入っている配列をしてしてあげている。 -->
-			<?php echo $this->upload->uploadImage($user['UserProfile'],'UserProfile.avatar',array('style'=>'thumb')); ?>
-<!--  			<?php echo $this->Form->create('UserProfile', array('type' => 'file')); ?>
-			<?php echo $this->Form->input('avatar', array('type' => 'file', 'label'=> false)); ?>
-			<?php echo $this->Form->end(__('変更/登録')); ?> -->
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			名前
-		</div>
-		<div class="col-md-10">
-			<?php echo $user['UserProfile']['name']; ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			メールアドレス
-		</div>
-		<div class="col-md-10">
-			<?php echo $user['User']['email']; ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			好きな食べ物
-		</div>
-		<div class="col-md-10">
-			<?php echo $user['UserProfile']['like_food']; ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			好きなジャンル
-		</div>
-		<div class="col-md-10">
-			<?php echo $user['UserProfile']['like_genre']; ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			よく使う価格帯
-		</div>
-		<div class="col-md-10">
-			<?php echo $user['UserProfile']['like_price_zone']; ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			最寄り駅
-		</div>
-		<div class="col-md-10">
-			<?php echo $user['UserProfile']['near_station']; ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			住んでいる地域
-		</div>
-		<div class="col-md-10">
-			<?php echo $user['UserProfile']['living_area']; ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-			自己紹介文
-		</div>
-		<div class="col-md-10">
-			<?php echo $user['UserProfile']['introduction']; ?>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-2">
-		</div>
-		<div class="col-md-10">
-			<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action'=>'profileedit')) ;?>" class="btn btn-default">編集する</a>
-			<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action'=>'passwordedit')) ;?>" class="btn btn-default">パスワード変更</a>
-		</div>
-	</div>
-
-</fieldset>
-
-
+<!-- Page Content -->
 <div class="container">
 
-  	<!-- CONTENT ============-->
-	<div class="row main-content">
+    <!-- Portfolio Item Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">プロフィール
+                <small>Profile</small>
+                <a href="<?php echo $this->Html->url(array('controller' => 'users', 'action'=>'profileedit')) ;?>" class="btn btn-default">編集する</a>
+				<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action'=>'passwordedit')) ;?>" class="btn btn-default">パスワード変更</a>
+				<a href="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'myMovieIndex')) ;?>" class="btn btn-default">投稿した動画を確認する</a>
+            </h1>
+        </div>
+    </div>
+    <!-- /.row -->
 
-	  	<!-- 動画とお店の詳細 ============-->
-	  	<!-- ROW ============-->
-	  	<div class="row">
-		    <div class="col-md-4">
-		      <div class="row">
-		        <!-- 閲覧履歴動画 ============-->
-		        <table class="movie-list-table table table-striped">
+    <!-- Portfolio Item Row -->
+    <div class="row">
+    	<?php if(!empty($userSession['UserProfile']['avatar_file_name'])) : ?>
+        	<div class="col-xs-8">
+            	<?php echo $this->upload->uploadImage($user['UserProfile'],'UserProfile.avatar',array('style'=>'original'),array('class' => 'dashbord_img')); ?>
+        	</div>
+        <?php endif ;?>
 
-					<?php for ($i = 0; $i < count($UserWatchMovieList); ++$i): ?>
-		          	<tr class="movie-list-tr">
-			            <td class="movie-list-photo-td">
-			              	<a href ="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'view' , $UserWatchMovieList[$i]['Movie']['id'])) ;?>" class="movie-list-photo-a">
-			                	<img src="<?php echo $UserWatchMovieList[$i]['Movie']['thumbnails_url'] ;?>"  class="movie-list-photo">
-			              	</a>
-			            </td>
-			            <td class="movie-list-description-td" valign="top">
-			              	<div class="movie-list-description-div">
-				                <a href="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'view' , $UserWatchMovieList[$i]['Movie']['id'])) ;?>" class="movie-list-description-title-ahref">
-				                  <span class="movie-list-description-title">
-				                  	<?php echo $UserWatchMovieList[$i]['Movie']['Restaurant']['name'] ;?>
-				                  </span>
-				                  <br>
-				                </a>
-				                <a href="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'view' , $UserWatchMovieList[$i]['Movie']['id'])) ;?>" class="movie-list-reporter-introduction-ahref">
-				                  	<span class="label label-default">最寄駅</span>&nbsp;<span class="black-text">
-				                  		<?php echo $UserWatchMovieList[$i]['Movie']['Restaurant']['name'] ;?>
-				              		</span> &nbsp;&nbsp;
-				                  	<span class="label label-default">ジャンル</span>&nbsp;<span class="black-text">
-				                  		<?php echo $UserWatchMovieList[$i]['Movie']['Restaurant']['category'] ;?>
-				                  	</span> &nbsp;&nbsp;
-				                  	<span class="label label-default">料金</span>&nbsp;<span class="black-text">
-				                  		<?php echo $UserWatchMovieList[$i]['Movie']['Restaurant']['budget'] ;?>
-				                  	</span> &nbsp;&nbsp;
-				                  	<br>
-				                  	<span class="movie-list-reporter-introduction">
-				                  		<?php echo $UserWatchMovieList[$i]['Movie']['description'] ;?>
-				                  	</span>
-				                </a>  
-			              	</div>  
-			            </td>
-		          	</tr>
-		          	<?php endfor ;?>
+        <div class="col-xs-4">
+            <h3><?php echo $user['UserProfile']['name']; ?></h3>
+            <p><?php echo $user['UserProfile']['introduction']; ?></p>
+			<table class="table">
+				<tr>
+					<td>メールアドレス</td>
+					<td><?php echo $user['User']['email']; ?></td>
+				</tr>
+				<tr>
+					<td>好きな食べ物</td>
+					<td><?php echo $user['UserProfile']['like_food']; ?></td>
+				</tr>
+				<tr>
+					<td>好きな食べ物</td>
+					<td><?php echo $user['UserProfile']['like_genre']; ?></td>
+				</tr>
+				<tr>
+					<td>好きな価格帯</td>
+					<td><?php echo $user['UserProfile']['like_price_zone']; ?></td>
+				</tr>
+				<tr>
+					<td>最寄駅</td>
+					<td><?php echo $user['UserProfile']['near_station']; ?></td>
+				</tr>
+				<tr>
+					<td>住んでいる地域</td>
+					<td><?php echo $user['UserProfile']['living_area']; ?></td>
+				</tr>
+        	</table>
 
-		        </table>
-		        <!-- /動画 ============-->
-		      </div>
-		    </div>
-		    <!-- お気に入り動画 ============-->
-			<div class="col-md-10">
-		      <div class="row">
-		        <!-- 動画 ============-->
-		        <table class="movie-list-table table table-striped">
+    </div>
+    <!-- /.row -->
 
-					<?php for ($i = 0; $i < count($UserFavoriteMovieList); ++$i): ?>
-		          	<tr class="movie-list-tr">
-			            <td class="movie-list-photo-td">
-			              	<a href ="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'view' , $UserFavoriteMovieList[$i]['Movie']['id'])) ;?>" class="movie-list-photo-a">
-			                	<img src="<?php echo $UserFavoriteMovieList[$i]['Movie']['thumbnails_url'] ;?>"  class="movie-list-photo">
-			              	</a>
-			            </td>
-			            <td class="movie-list-description-td" valign="top">
-			              	<div class="movie-list-description-div">
-				                <a href="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'view' , $UserFavoriteMovieList[$i]['Movie']['id'])) ;?>" class="movie-list-description-title-ahref">
-				                  <span class="movie-list-description-title">
-				                  	<?php echo $UserFavoriteMovieList[$i]['Movie']['Restaurant']['name'] ;?>
-				                  </span>
-				                  <br>
-				                </a>
-				                <a href="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'view' , $UserFavoriteMovieList[$i]['Movie']['id'])) ;?>" class="movie-list-reporter-introduction-ahref">
-				                  	<span class="label label-default">最寄駅</span>&nbsp;<span class="black-text">
-				                  		<?php echo $UserFavoriteMovieList[$i]['Movie']['Restaurant']['name'] ;?>
-				              		</span> &nbsp;&nbsp;
-				                  	<span class="label label-default">ジャンル</span>&nbsp;<span class="black-text">
-				                  		<?php echo $UserFavoriteMovieList[$i]['Movie']['Restaurant']['category'] ;?>
-				                  	</span> &nbsp;&nbsp;
-				                  	<span class="label label-default">料金</span>&nbsp;<span class="black-text">
-				                  		<?php echo $UserFavoriteMovieList[$i]['Movie']['Restaurant']['budget'] ;?>
-				                  	</span> &nbsp;&nbsp;
-				                  	<br>
-					            	<?php for ($j = 0; $j < count($UserFavoriteMovieList[$i]['Movie']['TagRelation']); ++$j): ?>
-					                  	<span class="label label-default">
-					                  		<?php echo $UserFavoriteMovieList[$i]['Movie']['TagRelation'][$j]['Tag']['name'] ;?>
-					                  	</span>&nbsp;
-					            	<?php endfor ;?>
-					            	<br>
-				                  	<span class="movie-list-reporter-introduction">
-				                  		<?php echo $UserFavoriteMovieList[$i]['Movie']['description'] ;?>
-				                  	</span>
-				                </a>  
-			              	</div>  
-			            </td>
-			            <td>
-			            	<?php echo $this->Form->create('UserFavoriteMovieLists', array('type' => 'post' , 'action' => 'delete')); ?>
-					        <?php echo $this->Form->input('UserFavoriteMovieListsController.id', array(
-					            'label' => false,
-					            'type' => 'hidden',
-					            'value' => $UserFavoriteMovieList[$i]['UserFavoriteMovieList']['id'],
-					        )); ?>
-					        <button type="submit" class="btn btn-warning">削除</button>
-					        <?php echo $this->Form->end(); ?>
-			            </td>
-		          	</tr>
-		          	<?php endfor ;?>
+    <!-- Related Projects Row -->
+    <div class="row">
 
-		        </table>
+        <div class="col-lg-12">
+            <h3 class="page-header">
+            	お気に入りのお食事レポート
+            	<a href="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'userFavoriteMovieList')) ;?>" class="btn btn-default">もっと見る</a>
+            </h3>
+        </div>
 
-		        <!-- /動画 ============-->
-		      </div>
-		    </div>
-		    <!-- マイムービー	 ============-->
-		    <div class="col-md-4">
-		      <div class="row">
-		        <!-- 動画 ============-->
-		        <table class="movie-list-table table table-striped">
+        <?php for ($i=0; $i < count($UserFavoriteMovieList); $i++) : ?>
+        	<?php if(isset($UserFavoriteMovieList[$i]['Movie']['Restaurant']['image_url'])) : ?>
+		        <div class="col-xs-3 col-xs-6">
 
-					<?php for ($i = 0; $i < count($userMoviePostHistory); ++$i): ?>
-		          	<tr class="movie-list-tr">
-			            <td class="movie-list-photo-td">
-			              	<a href ="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'view' , $userMoviePostHistory[$i]['Movie']['id'])) ;?>" class="movie-list-photo-a">
-			                	<img src="<?php echo $userMoviePostHistory[$i]['Movie']['thumbnails_url'] ;?>"  class="movie-list-photo">
-			              	</a>
-			            </td>
-			            <td class="movie-list-description-td" valign="top">
-			              	<div class="movie-list-description-div">
-				                <a href="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'view' , $userMoviePostHistory[$i]['Movie']['id'])) ;?>" class="movie-list-description-title-ahref">
-				                  <span class="movie-list-description-title">
-				                  	<?php echo $userMoviePostHistory[$i]['Restaurant']['name'] ;?>
-				                  </span>
-				                  <br>
-				                </a>
-				                <a href="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'view' , $userMoviePostHistory[$i]['Movie']['id'])) ;?>" class="movie-list-reporter-introduction-ahref">
-				                  	<span class="label label-default">最寄駅</span>&nbsp;<span class="black-text">
-				                  		<?php echo $userMoviePostHistory[$i]['Restaurant']['name'] ;?>
-				              		</span> &nbsp;&nbsp;
-				                  	<span class="label label-default">ジャンル</span>&nbsp;<span class="black-text">
-				                  		<?php echo $userMoviePostHistory[$i]['Restaurant']['category'] ;?>
-				                  	</span> &nbsp;&nbsp;
-				                  	<span class="label label-default">料金</span>&nbsp;<span class="black-text">
-				                  		<?php echo $userMoviePostHistory[$i]['Restaurant']['budget'] ;?>
-				                  	</span> &nbsp;&nbsp;
-				                  	<br>
-					            	<?php for ($j = 0; $j < count($userMoviePostHistory[$i]['TagRelation']); ++$j): ?>
-					                  	<span class="label label-default">
-					                  		<?php echo $userMoviePostHistory[$i]['TagRelation'][$j]['Tag']['name'] ;?>
-					                  	</span>&nbsp;
-					            	<?php endfor ;?>
-					            	<br>
-				                  	<span class="movie-list-reporter-introduction">
-				                  		<?php echo $userMoviePostHistory[$i]['Movie']['description'] ;?>
-				                  	</span>
-				                </a>  
-			              	</div>  
-			            </td>
-			            <td>
-			            	<a class="btn btn-info" href="<?php echo $this->Html->url(array('controller' => 'Movies' , 'action' => 'edit', $userMoviePostHistory[$i]['Movie']['id'])); ?>">
-                    			編集
-                    		</a>
-			            </td>
-			            <td>
-			            	<?php echo $this->Form->create('Movie', array('type' => 'post' , 'action' => 'delete')); ?>
-					        <?php echo $this->Form->input('Movie.id', array(
-					            'label' => false,
-					            'type' => 'hidden',
-					            'value' => $userMoviePostHistory[$i]['Movie']['id'],
-					        )); ?>
-					        <button type="submit" class="btn btn-warning">送信</button>
-					        <?php echo $this->Form->end(); ?>
-			            </td>
-		          	</tr>
-		          	<?php endfor ;?>
-		        </table>
-		        <!-- /動画 ============-->
-		      </div>
-		    </div>
-		    <!-- /動画とお店の詳細 ============-->
-		</div>
-		<!-- /ROW ============-->
-	</div>
-	<!-- /CONTENT ============-->
+		            <a href="<?php echo $this->Html->url(array('controller' => 'movies' , 'action' => 'view' , $UserFavoriteMovieList[$i]['Movie']['id'])) ;?>" class="no-decoration">
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+						    <h3 class="panel-title"><?php echo $UserFavoriteMovieList[$i]['Movie']['Restaurant']['name'] ;?></h3>
+						  </div>
+						  <div class="panel-body BCG">
+		                	<img class="img-responsive portfolio-item rest_photo" src="<?php echo $UserFavoriteMovieList[$i]['Movie']['Restaurant']['image_url'] ;?>" alt="photo">
+		                	<table class="table table-font">
+								<tr>
+									<td>レポーター名</td>
+									<td><?php echo $UserFavoriteMovieList[$i]['Movie']['User']['UserProfile']['name'] ;?></td>
+								</tr>
+								<tr>
+									<td>動画のタイトル</td>
+									<td><?php echo $UserFavoriteMovieList[$i]['Movie']['title'] ; ?></td>
+								</tr>
+								<tr>
+									<td>動画の紹介</td>
+									<td><?php echo $UserFavoriteMovieList[$i]['Movie']['description'] ; ?></td>
+								</tr>
+								<tr>
+									<td>再生回数</td>
+									<td><?php echo $UserFavoriteMovieList[$i]['Movie']['count'] ; ?>回</td>
+								</tr>
+				        	</table>
+						  </div>
+						</div>
+		            </a>
+		        </div>
+		    <?php endif ;?>
+    	<?php endfor ; ?>
 
-	<div class="pagination" style="margin-left:20px;">                         
-	  <ul>                                           
-	    <?php echo $this->Paginator->prev(__('prev'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a')); ?>
-	    <?php echo $this->Paginator->numbers(array('separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1, 'ellipsis' => '<li class="disabled"><a>...</a></li>')); ?>                              
-	    <?php echo $this->Paginator->next(__('next'), array('tag' => 'li','currentClass' => 'disabled'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a')); ?>
-	  </ul>                                          
-	</div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Related Projects Row -->
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h3 class="page-header">
+            	最近見たお食事レポート
+            	<a href="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'userWatchMovieList')) ;?>" class="btn btn-default">もっと見る</a>
+            </h3>
+        </div>
+
+        <?php for ($i=0; $i < count($UserWatchMovieList); $i++) : ?>
+        	<?php if(isset($UserWatchMovieList[$i]['Movie']['Restaurant']['image_url'])) : ?>
+		        <div class="col-xs-3 col-xs-6">
+		            <a href="<?php echo $this->Html->url(array('controller' => 'movies' , 'action' => 'view' , $UserWatchMovieList[$i]['Movie']['id'])) ;?>" class="no-decoration">
+
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+						    <h3 class="panel-title"><?php echo $UserWatchMovieList[$i]['Movie']['Restaurant']['name'] ;?></h3>
+						  </div>
+						  <div class="panel-body BCG">
+		                	<img class="img-responsive portfolio-item rest_photo" src="<?php echo $UserWatchMovieList[$i]['Movie']['Restaurant']['image_url'] ;?>" alt="photo">
+		                	<table class="table table-font">
+								<tr>
+									<td>レポーター名</td>
+									<td><?php echo $UserWatchMovieList[$i]['Movie']['User']['UserProfile']['name'] ;?></td>
+								</tr>
+								<tr>
+									<td>動画のタイトル</td>
+									<td><?php echo $UserWatchMovieList[$i]['Movie']['title'] ; ?></td>
+								</tr>
+								<tr>
+									<td>動画の紹介</td>
+									<td><?php echo $UserWatchMovieList[$i]['Movie']['description'] ; ?></td>
+								</tr>
+								<tr>
+									<td>再生回数</td>
+									<td><?php echo $UserWatchMovieList[$i]['Movie']['count'] ; ?>回</td>
+								</tr>
+				        	</table>
+						  </div>
+						</div>
+		            </a>
+		        </div>
+		    <?php endif ;?>
+    	<?php endfor ; ?>
+
+    </div>
+    <!-- /.row -->
 
 </div>
+</div>
+<!-- /.container -->

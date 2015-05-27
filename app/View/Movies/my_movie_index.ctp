@@ -1,94 +1,89 @@
-<?php echo $this->Html->css('bootstrap.min'); ?>
-<?php echo $this->Html->css('view-myMovieIndex/common-setting'); ?>
-<?php echo $this->Html->css('view-myMovieIndex/place-title.css'); ?>
-<?php echo $this->Html->css('view-myMovieIndex/movie-list.css'); ?>
-<?php echo $this->Html->css('view-myMovieIndex/select-page-button-movie.css'); ?>
-<?php echo $this->Html->css('view-myMovieIndex/view-reccomend-movie-for-movie.css'); ?>
+<?php echo $this->Html->css('movies-myMovieIndex/common-setting'); ?>
+<?php echo $this->Html->css('movies-myMovieIndex/place-title'); ?>
+<?php echo $this->Html->css('movies-myMovieIndex/movie-list'); ?>
+<?php echo $this->Html->css('movies-myMovieIndex/select-page-button-movie'); ?>
+<?php echo $this->Html->css('movies-myMovieIndex/view-reccomend-movie-for-movie'); ?>
+<?php echo $this->Html->css('movies-myMovieIndex/movie-serchResult'); ?>
 
+<!-- Page Content -->
 <div class="container">
 
-  	<!-- CONTENT ============-->
-	<div class="row main-content">
+  <!-- Related Projects Row -->
+  <div class="row">
 
-	  	<!-- 動画とお店の詳細 ============-->
-	  	<!-- ROW ============-->
-	  	<div class="row">
-		    <div class="col-md-10">
-		      <div class="row">
-		        <!-- 動画 ============-->
-		        <table class="movie-list-table table table-striped">
+      <div class="col-lg-12">
+          <h3 class="page-header">
+            レポートした動画を管理する
+          </h3>
+      </div>
 
-					<?php for ($i = 0; $i < count($userMoviePostHistory); ++$i): ?>
-		          	<tr class="movie-list-tr">
-			            <td class="movie-list-photo-td">
-			              	<a href ="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'view' , $userMoviePostHistory[$i]['Movie']['id'])) ;?>" class="movie-list-photo-a">
-			                	<img src="<?php echo $userMoviePostHistory[$i]['Movie']['thumbnails_url'] ;?>"  class="movie-list-photo">
-			              	</a>
-			            </td>
-			            <td class="movie-list-description-td" valign="top">
-			              	<div class="movie-list-description-div">
-				                <a href="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'view' , $userMoviePostHistory[$i]['Movie']['id'])) ;?>" class="movie-list-description-title-ahref">
-				                  <span class="movie-list-description-title">
-				                  	<?php echo $userMoviePostHistory[$i]['Restaurant']['name'] ;?>
-				                  </span>
-				                  <br>
-				                </a>
-				                <a href="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'view' , $userMoviePostHistory[$i]['Movie']['id'])) ;?>" class="movie-list-reporter-introduction-ahref">
-				                  	<span class="label label-default">最寄駅</span>&nbsp;<span class="black-text">
-				                  		<?php echo $userMoviePostHistory[$i]['Restaurant']['name'] ;?>
-				              		</span> &nbsp;&nbsp;
-				                  	<span class="label label-default">ジャンル</span>&nbsp;<span class="black-text">
-				                  		<?php echo $userMoviePostHistory[$i]['Restaurant']['category'] ;?>
-				                  	</span> &nbsp;&nbsp;
-				                  	<span class="label label-default">料金</span>&nbsp;<span class="black-text">
-				                  		<?php echo $userMoviePostHistory[$i]['Restaurant']['budget'] ;?>
-				                  	</span> &nbsp;&nbsp;
-				                  	<br>
-					            	<?php for ($j = 0; $j < count($userMoviePostHistory[$i]['TagRelation']); ++$j): ?>
-					                  	<span class="label label-default">
-					                  		<?php echo $userMoviePostHistory[$i]['TagRelation'][$j]['Tag']['name'] ;?>
-					                  	</span>&nbsp;
-					            	<?php endfor ;?>
-					            	<br>
-				                  	<span class="movie-list-reporter-introduction">
-				                  		<?php echo $userMoviePostHistory[$i]['Movie']['description'] ;?>
-				                  	</span>
-				                </a>  
-			              	</div>  
-			            </td>
-			            <td>
-			            	<a class="btn btn-info" href="<?php echo $this->Html->url(array('controller' => 'Movies' , 'action' => 'edit', $userMoviePostHistory[$i]['Movie']['id'])); ?>">
-                    			編集
-                    		</a>
-			            </td>
-			            <td>
-			            	<?php echo $this->Form->create('Movie', array('type' => 'post' , 'action' => 'delete')); ?>
-					        <?php echo $this->Form->input('Movie.id', array(
-					            'label' => false,
-					            'type' => 'hidden',
-					            'value' => $userMoviePostHistory[$i]['Movie']['id'],
-					        )); ?>
-					        <button type="submit" class="btn btn-warning">送信</button>
-					        <?php echo $this->Form->end(); ?>
-			            </td>
-		          	</tr>
-		          	<?php endfor ;?>
-		        </table>
-		        <!-- /動画 ============-->
-		      </div>
-		    </div>
-		    <!-- /動画とお店の詳細 ============-->
-		</div>
-		<!-- /ROW ============-->
-	</div>
-	<!-- /CONTENT ============-->
+      <?php for ($i=0; $i < count($userMoviePostHistory); $i++) : ?>
+        <?php if(isset($userMoviePostHistory[$i]['Restaurant']['image_url'])) : ?>
 
-	<div class="pagination" style="margin-left:20px;">                         
-	  <ul>                                           
-	    <?php echo $this->Paginator->prev(__('prev'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a')); ?>
-	    <?php echo $this->Paginator->numbers(array('separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1, 'ellipsis' => '<li class="disabled"><a>...</a></li>')); ?>                              
-	    <?php echo $this->Paginator->next(__('next'), array('tag' => 'li','currentClass' => 'disabled'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a')); ?>
-	  </ul>                                          
-	</div>
+          <?php $tr_start = $i%4 ;?>
+          <?php if($i === 0 || $tr_start === 0) : ?>
+            <div class="row">
+          <?php endif ; ?>
+
+            <div class="col-xs-3 col-xs-6">
+              <a href="<?php echo $this->html->url(array('controller' => 'Movies' , 'action' => 'view' , $userMoviePostHistory[$i]['Movie']['id'])) ;?>" class="non-decorate">
+                <div class="panel panel-default BGC">
+                  <div class="panel-heading">
+                    <h3 class="panel-title black"><?php echo $userMoviePostHistory[$i]['Restaurant']['name'] ;?></h3>
+                  </div>
+                  <div class="panel-body">
+                    <img class="img-responsive portfolio-item rest_photo" src="<?php echo $userMoviePostHistory[$i]['Restaurant']['image_url'] ;?>" alt="photo">
+                    <table class="table table-font">
+                      <tr>
+                        <td>レポーター名</td>
+                        <td><?php echo $userMoviePostHistory[$i]['User']['UserProfile']['name'] ;?></td>
+                      </tr>
+                      <tr>
+                        <td>動画のタイトル</td>
+                        <td><?php echo $userMoviePostHistory[$i]['Movie']['title'] ; ?></td>
+                      </tr>
+                      <tr>
+                        <td>動画の紹介</td>
+                        <td><?php echo $userMoviePostHistory[$i]['Movie']['description'] ; ?></td>
+                      </tr>
+                      <tr>
+                        <td>再生回数</td>
+                        <td><?php echo $userMoviePostHistory[$i]['Movie']['count'] ; ?>回</td>
+                      </tr>
+                    </table>
+                    <a class="btn btn-info btn-block" href="<?php echo $this->Html->url(array('controller' => 'Movies' , 'action' => 'edit', $userMoviePostHistory[$i]['Movie']['id'])); ?>">編集</a>
+                    <?php echo $this->Form->create('Movie', array('type' => 'post' , 'action' => 'delete')); ?>
+                    <?php echo $this->Form->input('Movie.id', array(
+                        'label' => false,
+                        'type' => 'hidden',
+                        'value' => $userMoviePostHistory[$i]['Movie']['id'],
+                    )); ?>
+                    <button type="submit" class="btn btn-warning btn-block" style="margin-top:8px;">削除</button>
+                    <?php echo $this->Form->end(); ?>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          <?php $tr_end = $i%4 ;?>
+          <?php if($i === 3 || $tr_end === 3) : ?>
+            </div>
+          <?php endif ; ?>
+
+        <?php endif ;?>
+      <?php endfor ; ?>
+
+  </div>
+  <!-- /.row -->
+
+  <!-- /動画 ============-->
+  <div class="pagination" style="margin-left:55px;">                         
+    <ul>                                           
+      <?php echo $this->Paginator->prev(__('prev'), array('tag' => 'li'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a')); ?>
+      <?php echo $this->Paginator->numbers(array('separator' => '','currentTag' => 'a', 'currentClass' => 'active','tag' => 'li','first' => 1, 'ellipsis' => '<li class="disabled"><a>...</a></li>')); ?>                              
+      <?php echo $this->Paginator->next(__('next'), array('tag' => 'li','currentClass' => 'disabled'), null, array('tag' => 'li','class' => 'disabled','disabledTag' => 'a')); ?>
+    </ul>                                          
+  </div>
 
 </div>
+<!-- /.container -->
