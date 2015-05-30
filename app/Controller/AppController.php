@@ -41,8 +41,7 @@ class AppController extends Controller {
         'UploadPack.Upload'
 	);
 
-	public $components = array(
-		'DebugKit.Toolbar', 
+	public $components = array( 
         'Session',
 		'Auth' => array(
             'loginRedirect' => array(
