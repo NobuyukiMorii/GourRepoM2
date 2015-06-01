@@ -22,15 +22,12 @@
 
   <!-- CONTENT ============-->
 
-  	<span class="description">
-  		投稿の前にログインして下さい。
-  	</span>
-
 	<div class="margin-top">
 
 		<div class="row">
 
-			<div class="col-xs-12">
+			<div class="col-xs-12" style="margin-bottom:10%;">
+
 				<?php echo $this->Form->create('User', array(
 					'inputDefaults' => array(
 						'div' => 'form-group',
@@ -39,6 +36,8 @@
 					),
 					'class' => 'form-signin'
 				)); ?>
+
+				<div style="margin-bottom:10%;">投稿の前にログインして下さい。</div>
 
 				<label for="inputEmail" class="sr-only">Email address</label>
 				<?php echo $this->Form->input('email', array(
@@ -53,7 +52,8 @@
 					'class' => 'form-control',
 				)); ?>
 				<button class="btn btn-primary btn-block" type="submit">ログイン</button>
-				<div class="aida"></div>
+				<div style="margin-bottom:20%;">
+				</div>
 				<a class="btn btn-info btn-block" href="<?php echo $this->Html->url(array('controller' => 'Users' , 'action' => 'signup')); ?>">サインアップ</a>
 				<?php echo $this->Form->end(); ?>
 			</div>

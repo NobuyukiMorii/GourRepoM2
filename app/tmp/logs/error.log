@@ -2862,3 +2862,21 @@ Stack Trace:
 #10 /Applications/MAMP/htdocs/GourRepoM2/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(ApiMoviesController), Object(CakeRequest))
 #11 /Applications/MAMP/htdocs/GourRepoM2/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #12 {main}
+2015-05-30 18:08:20 Error: [MissingControllerException] Controller class MoviesM2Controller could not be found.
+Exception Attributes: array (
+  'class' => 'MoviesM2Controller',
+  'plugin' => NULL,
+)
+Request URL: /GourRepoM2/MoviesM2
+Stack Trace:
+#0 /Applications/MAMP/htdocs/GourRepoM2/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-05-30 19:04:54 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /GourRepoM2/css/bootstrap.css.map
+Stack Trace:
+#0 /Applications/MAMP/htdocs/GourRepoM2/app/webroot/index.php(108): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
