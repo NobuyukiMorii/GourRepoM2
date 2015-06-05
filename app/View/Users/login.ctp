@@ -39,19 +39,20 @@
 
 				<div style="margin-bottom:10%;">投稿の前にログインして下さい。</div>
 
-				<label for="inputEmail" class="sr-only">Email address</label>
 				<?php echo $this->Form->input('email', array(
 					'label' => false,
 					'placeholder' => 'メールアドレス',
 					'class' => 'form-control',
 				)); ?>
-				<label for="inputPassword" class="sr-only">Password</label>
+
+
 				<?php echo $this->Form->input('password', array(
 					'label' => false,
 					'placeholder' => 'パスワード',
 					'class' => 'form-control',
 				)); ?>
-				<button class="btn btn-primary btn-block" type="submit">ログイン</button>
+
+				<button class="btn btn-warning btn-block" type="submit">ログイン</button>
 				<div style="margin-bottom:20%;">
 				</div>
 				<a class="btn btn-info btn-block" href="<?php echo $this->Html->url(array('controller' => 'Users' , 'action' => 'signup')); ?>">サインアップ</a>
