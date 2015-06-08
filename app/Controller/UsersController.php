@@ -8,7 +8,7 @@ class UsersController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('signup', 'login', 'logout');
+        $this->Auth->allow('signup', 'login', 'logout','privacy_policy');
 
     }
 
@@ -215,6 +215,15 @@ class UsersController extends AppController {
                 $this->Session->setFlash(__('ご利用ありがとうございました。'));
             }
         }
+    }
+
+    /*
+    *iOS専用のプライバシーポリシー同意画面
+    */
+    public function privacy_policy(){
+        //オウトレイアウトを消す
+        $this->autoLayout = false;
+
     }
 
 }   

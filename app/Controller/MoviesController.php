@@ -963,7 +963,4 @@ class MoviesController extends AppController {
 		$this->autoLayout = false;
 	}
 
-
-
-
 }

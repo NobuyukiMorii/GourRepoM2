@@ -55,7 +55,7 @@
 				<button class="btn btn-warning btn-block" type="submit">ログイン</button>
 				<div style="margin-bottom:20%;">
 				</div>
-				<a class="btn btn-info btn-block" href="<?php echo $this->Html->url(array('controller' => 'Users' , 'action' => 'signup')); ?>">サインアップ</a>
+				<a class="btn btn-info btn-block" href="<?php echo $this->Html->url(array('controller' => 'Users' , 'action' => 'privacy_policy')); ?>">サインアップ</a>
 				<?php echo $this->Form->end(); ?>
 			</div>
 		</div>

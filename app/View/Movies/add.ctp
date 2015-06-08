@@ -6640,17 +6640,16 @@ button.close {
         <!-- input -->
       <div>
 
-          <div class="col-xs-12">
-            <span>動画の情報を入力して下さい</span>
+         <div class="col-xs-12">
+            <span>動画を投稿して下さい</span>
           </div>
 
-          <span class="col-xs-12" style="margin-top:7%;">タイトル（50文字以下）</span>
           <div class="col-xs-12">
             <?php echo $this->Form->input('Movie.title', array(
               'label' => false,
-              'type' => 'text',
+              'type' => 'hidden',
               'class' => 'input-lg',
-              'value' => '',
+              'value' => 'iPhoneからの投稿です。',
               'maxlength' => 50,
               'placeholder' => '',
               'id' => 'title'
@@ -6660,17 +6659,12 @@ button.close {
 
         <!-- textarea -->
 
-          <span class="col-xs-12">紹介文（200文字以下）</span>
           <div class="col-xs-12">
             <?php echo $this->Form->input('Movie.description', array(
               'label' => false,
-              'type' => 'textarea',
+              'type' => 'hidden',
               'class' => 'form-control',
-              'rows' => 5,
-              'value' => '',
-              'maxlength' => 200,
-              'placeholder' => '',
-              'id' => 'description'
+              'value' => 'iPhoneからの投稿です。',
             )); ?>
             <?php echo $this->Form->error('Movie.description');?>
           </div>
@@ -6713,15 +6707,24 @@ button.close {
       <input name="thumbnails_url" type="hidden" id="thumbnailsUrl_form" value="" />
 
       <div class="form-group" id="tag">
-        <span class="col-xs-12">料理名</span>
-        <div class="col-xs-12">
-          <input name="tag" type="text" value="" class="input-lg" />
+        
+        <center>
+          <span class="col-xs-12">料理のジャンルを入力して下さい。</span>
+        </center>
+
+        <div class="col-xs-12" style="margin-top:10%;">
+          <!-- <input name="tag" type="text" value="" class="input-lg" /> -->
+          <center>
+            <input type="radio" name="tag" value="和食" checked="checked">和食
+            <input type="radio" name="tag" value="洋食">洋食
+          </center>
         </div>
+
       </div>
 
       <div class="form-group" style="margin-top:48%;">
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-default btn-lg btn-block" id="submit-botton">送信する</button>
+          <button type="submit" class="btn btn-default btn-lg btn-block" id="submit-botton" style="margin-top:10%;">送信する</button>
         </div>
       </div>
 
